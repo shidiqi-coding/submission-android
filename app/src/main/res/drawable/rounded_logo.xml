@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background oval -->
+    <item>
+        <shape
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shape="oval">
+            <solid android:color="#000000" /> <!-- Ganti warna sesuai kebutuhan -->
+        </shape>
+    </item>
+
+    <!-- Logo di tengah -->
+    <item>
+        <bitmap
+            android:src="@drawable/dicoding_logo"
+            android:gravity="center" />
+    </item>
+</layer-list>

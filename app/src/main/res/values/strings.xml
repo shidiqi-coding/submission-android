@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Dicoding Event</string>
+    <string name="title_home">Home</string>
+    <string name="title_finished">Finished</string>
+<!--    <string name="title_notifications">Notifications</string>-->
+<!--    <string name="setting">setting</string>-->
+    <string name="upcoming">Upcoming Events</string>
+    <string name="finished">Finished Events</string>
+    <string name="from">from</string>
+    <string name="searchbar_hint">Cari Event</string>
+
+    <string name="event_name">Nama Acara</string>
+    <string name="event_owner_name">Penyelenggara Acara</string>
+    <string name="event_summary">Ringkasan</string>
+    <string name="event_description">Deskripsi</string>
+    <string name ="quota">Kuota</string>
+    <string name ="begin_time">Waktu Acara</string>
+    <string name="searchbar_description">cari</string>
+    <string name="value">Value</string>
+    <string name="register">Daftar</string>
+
+    <string name ="empty_message">No events found</string>
+
+</resources>
