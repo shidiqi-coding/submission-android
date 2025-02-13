@@ -24,5 +24,7 @@ class SplashScreenActivity : AppCompatActivity() {
             finish()
         },splashScreenTimout)
 
+        supportActionBar?.hide()
+
     }
 }

@@ -1,10 +1,10 @@
 <resources>
-    <string name="app_name">Dicoding Event</string>
+    <string name="app_name">DicodingEvent</string>
     <string name="title_home">Home</string>
     <string name="title_finished">Finished</string>
 <!--    <string name="title_notifications">Notifications</string>-->
 <!--    <string name="setting">setting</string>-->
-    <string name="upcoming">Upcoming Events</string>
+    <string name="upcoming">Upcoming</string>
     <string name="finished">Finished Events</string>
     <string name="from">from</string>
     <string name="searchbar_hint">Cari Event</string>
@@ -17,7 +17,10 @@
     <string name ="begin_time">Waktu Acara</string>
     <string name="searchbar_description">cari</string>
     <string name="value">Value</string>
+    <string name ="category">kategori</string>
     <string name="register">Daftar</string>
+    <string name="location">Lokasi</string>
+    <string name ="link_button">Daftar</string>
 
     <string name ="empty_message">No events found</string>
 

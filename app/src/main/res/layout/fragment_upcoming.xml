@@ -1,13 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@id/main"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.upcoming.UpcomingFragment">
 
-<!--    <TextView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:text="Hello" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+
+        <com.google.android.material.search.SearchBar
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal ="16dp"
+            android:hint = "@string/searchbar_hint"
+            app:layout_constraintEnd_toEndOf ="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/bottom_nav_menu"/>
+
+        <com.google.android.material.search.SearchView
+          android:id ="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height = "0dp"
+            android:hint="@string/searchbar_hint"
+            app:layout_anchor ="@id/searchBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf ="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+          <androidx.recyclerview.widget.RecyclerView
+              android:id="@+id/rvListUpcoming"
+              android:layout_width="match_parent"
+              android:layout_height="550dp"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf ="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+              app:layout_constraintHorizontal_bias="1.0"
+              app:layout_constraintVertical_bias="0.0"
+              app:layout_constraintTop_toBottomOf="@+id/searchBar"
+              tools:listitem="@layout/item_list"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf ="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

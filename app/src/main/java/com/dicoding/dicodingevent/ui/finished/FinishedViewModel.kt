@@ -1,8 +1,10 @@
 package com.dicoding.dicodingevent.ui.finished
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dicoding.dicodingevent.data.response.EventResponse
 //import com.dicoding.dicodingevent.data.response.EventResponse
 import com.dicoding.dicodingevent.data.response.ListEventsItem
 import com.dicoding.dicodingevent.data.retrofit.ApiConfig
@@ -12,64 +14,59 @@ import retrofit2.Response
 
 class FinishedViewModel : ViewModel() {
 
-    private val eventLiveData = MutableLiveData<List<ListEventsItem>>()
-    private val errorMessageLiveData = MutableLiveData<String> ()
+    private val _listEvents = MutableLiveData<List<ListEventsItem>>()
+    val listEvents: LiveData<List<ListEventsItem>> = _listEvents
 
-    fun getEvent() : LiveData<List<ListEventsItem>> = eventLiveData
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
 
-    fun getErrorMessage () : LiveData<String> = errorMessageLiveData
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage : LiveData<String> = _errorMessage
 
-    fun fetchFinished(forceReload : Boolean = false){
-        if(forceReload || eventLiveData.value == null || eventLiveData.value!!.isEmpty()) {
-            ApiConfig.getApiService().getEvent(0).enqueue(object : Callback<com.dicoding.dicodingevent.data.response.EventResponse> {
-                override fun onResponse(
-                    call: Call<com.dicoding.dicodingevent.data.response.Event> ,
-                    response: Response<com.dicoding.dicodingevent.data.response.Event>
-                ) {
+  companion object{
+      private const val TAG = "FinishedViewModel"
+      private const val Event_ID = "event_id"
+  }
 
-                    if (response.isSuccessful) {
-                        val eventList = response.body()?.listEvents?.filterNotNull()
-                        eventLiveData.value = eventList ?: emptyList()
-                    } else {
-                        errorMessageLiveData.value =
-                            "Failed to fetch events. Please try again later."
-                    }
-
-                }
-
-                override fun onFailure(call: Call<com.dicoding.dicodingevent.data.response.Event>, t: Throwable) {
-                 errorMessageLiveData.value = "Network error. Please check your internet connection."
-
-
-                }
-            })
-        }
-
+    init {
+        getEvent()
     }
+
+    fun getEvent(){
+        findEvent(active = 0)
+    }
+
+
 
     fun searchEvents(query : String) {
-        ApiConfig.getApiService().searchEvents(query).enqueqe(object : Callback<com.dicoding.dicodingevent.data.response.Event> {
-            override fun onResponse(
-                call: Call<com.dicoding.dicodingevent.data.response.Event>,
-                response: Response<com.dicoding.dicodingevent.data.response.Event>
+      findEvent(query = query)
+    }
 
+    private fun findEvent(query: String? = null, active: Int? = null) {
+        _isLoading.value = true
+        val client = ApiConfig.getApiService().getEvent(active = 0 , q = query,40)
+        client.enqueue(object : Callback<EventResponse> {
+            override fun onResponse(
+                call: Call<EventResponse> ,
+                response: Response<EventResponse>
             ) {
-                if(response.isSuccessful) {
-                    val eventList = response.body()?.listEvents?.filterNotNull()
-                    eventLiveData.value = eventList ?: emptyList()
+                _isLoading.value = false
+                if (response.isSuccessful) {
+                    _listEvents.value = response.body()?.listEvents
                 } else {
-                    errorMessageLiveData.value = "Search failed. Please try again"
+                    Log.e(TAG, "onFailure: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<com.dicoding.dicodingevent.data.response.Event> , t: Throwable) {
-                errorMessageLiveData.value = "Network Error. Please check your internet connection"
+            override fun onFailure(call: Call<EventResponse> , t: Throwable) {
+                _isLoading.value = false
+                Log.e(TAG, "onFailure: ${t.message.toString()}")
+
             }
+
         })
+
     }
 
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is dashboard Fragment"
-//    }
-//    val text: LiveData<String> = _text
+
 }
