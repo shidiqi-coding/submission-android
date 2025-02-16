@@ -1,20 +1,26 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.DicodingEvent" parent="Theme.Material3.DayNight">
+    <style name="Theme.DicodingEvent" parent="Theme.Material3.Light">
         <!-- Primary brand color. -->
+        <item name="toolbarStyle">@color/muted_blue_violet</item>
         <item name="colorPrimary">@color/muted_blue_violet</item>
-<!--        <item name="colorPrimaryVariant">@color/muted_blue_violet</item>-->
-        <item name="colorOnPrimary">@color/muted_blue_violet</item>
-        <!-- Secondary brand color. -->
-<!--        <item name="colorSecondary">@color/teal_200</item>-->
-<!--        <item name="colorSecondaryVariant">@color/teal_700</item>-->
-<!--        <item name="colorOnSecondary">@color/black</item>-->
-        <!-- Status bar color. -->
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Text colors -->
+        <item name="android:textColorPrimary">@color/white</item>
+
+        <!-- Status bar color -->
         <item name="android:statusBarColor">@color/muted_blue_violet</item>
-        <!-- Customize your theme here. -->
+
+        <!-- Navigation bar color -->
+<!--        <item name="android:navigationBarColor">@color/muted_blue_violet</item>-->
     </style>
 
     <style name ="Themes.DidocingEvent.Splash" parent="Theme.AppCompat">
         <item name ="android:windowBackground">@color/splash_background</item>
+    </style>
+
+    <style name="CustomToolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">@color/muted_blue_violet</item>
     </style>
 </resources>
