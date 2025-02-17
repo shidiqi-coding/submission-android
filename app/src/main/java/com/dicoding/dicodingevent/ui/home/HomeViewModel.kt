@@ -64,7 +64,7 @@ class HomeViewModel : ViewModel() {
                 if (response.isSuccessful) {
                      response.body()?.let { eventResponse ->
                    // if (responseBody != null) {
-                        _upcomingEvent.value = eventResponse.listEvents.take(5)
+                        _finishedEvent.value = eventResponse.listEvents.take(5)
                     }
                 } else {
                     _errorMessage.value = "Error: ${response.message()}"
